@@ -2,7 +2,7 @@ import React from "react";
 //ICOns
 import { FaGithub, FaPlus, FaSpinner, FaBars, FaTrash } from "react-icons/fa";
 //HOOKS
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 //COMPONENTS
 import { api } from "../../services/api";
 
@@ -12,6 +12,17 @@ const Main = () => {
   const [repositorios, setRepositorios] = useState([]);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
+
+  useEffect(() => {
+    const repoStorage = localStorage.getItem("repositorio");
+    if (repoStorage) {
+      setRepositorios(JSON.parse(repoStorage));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("repositorio", JSON.stringify(repositorios));
+  }, [repositorios]);
 
   const handleSubmit = useCallback(
     (e) => {
