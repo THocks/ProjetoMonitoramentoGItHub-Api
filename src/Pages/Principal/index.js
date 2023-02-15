@@ -1,8 +1,11 @@
 import React from "react";
 //ICOns
-import { FaGithub, FaPlus, FaSpinner, FaBars, FaTrash } from "react-icons/fa";
+import { FaGithub, FaSpinner, FaTrash } from "react-icons/fa";
+import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
 //HOOKS
 import { useState, useCallback, useEffect } from "react";
+import { Link } from "react-router-dom";
 //COMPONENTS
 import { api } from "../../services/api";
 
@@ -14,14 +17,14 @@ const Main = () => {
   const [alert, setAlert] = useState(null);
 
   useEffect(() => {
-    const repoStorage = localStorage.getItem("repositorio");
+    const repoStorage = window.localStorage.getItem("repos");
     if (repoStorage) {
       setRepositorios(JSON.parse(repoStorage));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("repositorio", JSON.stringify(repositorios));
+    window.localStorage.setItem("repos", JSON.stringify(repositorios));
   }, [repositorios]);
 
   const handleSubmit = useCallback(
@@ -78,7 +81,7 @@ const Main = () => {
       <Contaniner>
         <h1>
           <FaGithub size={25} />
-          Meus Repositorios
+          Favoritar Repositorio
         </h1>
 
         <Form onSubmit={handleSubmit} error={alert}>
@@ -92,7 +95,7 @@ const Main = () => {
             {loading ? (
               <FaSpinner color="#FFF" size={14} />
             ) : (
-              <FaPlus color="#FFF" size={14} />
+              <AiOutlineHeart color="#FFF" size={14} />
             )}
           </SubmitButton>
         </Form>
@@ -101,12 +104,12 @@ const Main = () => {
           {repositorios.map((repo) => (
             <li key={repo.name}>
               <DeleteButton onClick={() => handleDelete(repo.name)}>
-                <FaTrash size={14} />
+                <FaTrash size={20} color="#fff" />
               </DeleteButton>
               <span>{repo.name}</span>
-              <a href="">
-                <FaBars size={20} />
-              </a>
+              <Link to={`/repositorio/${encodeURIComponent(repo.name)}`}>
+                <AiOutlineAppstoreAdd size={25} color="#fff" />
+              </Link>
             </li>
           ))}
         </List>

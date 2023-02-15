@@ -1,15 +1,15 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./Pages/Principal/Main";
-import Rep from "./Pages/Rep/Rep";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Main from "./Pages/Principal";
+import Repositorio from "./Pages/Repositorio";
 
 const Rotas = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/Rep/:Rep" element={<Rep />} />
-      </Routes>
+      <Switch>
+        <Route exact path="/" component={Main} />
+        <Route exact path="/repositorio/:repositorio" component={Repositorio} />
+      </Switch>
     </BrowserRouter>
   );
 };

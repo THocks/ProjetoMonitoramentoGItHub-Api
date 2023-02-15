@@ -2,10 +2,10 @@ import styled, { keyframes, css } from "styled-components";
 
 export const Contaniner = styled.div`
   max-width: 700px;
-  background: white;
+  background: #6a0e6a;
   border-radius: 4px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  padding: 30px;
+  box-shadow: 0 0 20px white;
+  padding: 60px;
   margin: 80px auto;
 
   h1 {
@@ -13,6 +13,7 @@ export const Contaniner = styled.div`
     display: flex;
     align-items: center;
     flex-direction: row;
+    color: white;
 
     svg {
       margin-right: 10px;
@@ -28,9 +29,10 @@ export const Form = styled.form`
   input {
     flex: 1;
     border: 1px solid ${(props) => (props.error ? "#FFF000" : "#eee")};
-    padding: 10x 15px;
-    border-radius: 4px;
+    padding: 20x 20px;
+    border-radius: 50px;
     font-size: 17px;
+    height: 35px;
   }
 `;
 
@@ -92,6 +94,16 @@ export const List = styled.ul`
       color: #0d2636;
       text-decoration: none;
     }
+    span {
+      color: white;
+      font-size: 18px;
+      text-transform: uppercase;
+      transform: 0.4s;
+
+      &:hover {
+        color: red;
+      }
+    }
   }
 `;
 
@@ -105,3 +117,4 @@ export const DeleteButton = styled.button.attrs({
   outline: 0;
   border-radius: 4px;
 `;
+export const SpanTitle = styled.title``;
